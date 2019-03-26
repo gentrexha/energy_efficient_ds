@@ -1,4 +1,4 @@
-# Recommender systems
+# 194.049 Energy-efficient Distributed Systems
 
 This repository contains all the assignments from `194.049 Energy-efficient Distributed Systems` at the TU Wien during 2019SS.
 
