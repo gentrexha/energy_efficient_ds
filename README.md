@@ -10,6 +10,8 @@ Each assignment has it's corresponding folder and all the relevant data should b
 * Ilir Osmanaj
 
 # Tasks
-- [x] Exercise 1. **Deadline**: 08.04.2019, 12.00 pm: upload your homework on TUWEL
-- [ ] Exercise 2. **Deadline:** 14.05.2019, 12.00 pm: upload your homework on TUWEL
-- [ ] Exercise 3. TBA~
+- [x] Due March 20nd (23:59): Send an email with the subject: “EEDS Group Assignment” to ivan@ec.tuwien.ac.at (do not
+forget CC: ivona@ec.tuwien.ac.at) with three names building a group. 
+- [ ] Due May 8th: Presentation: Preparation; Implementation plan
+- [ ] Due May 29th: Presentation: Simulation infrastructure and preliminary implementation
+- [ ] Due June 19th: Presentation: Results of the simulation, validation and discussion
