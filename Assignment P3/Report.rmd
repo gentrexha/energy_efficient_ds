@@ -3,8 +3,8 @@ title: "194.049 Energy-efficient Distributed Systems"
 author: 'Gent Rexha, Ilir Osmanaj & Princ Mullatahiri '
 date: "12.06.2019"
 output:
-  html_document:
-    df_print: paged
+  pdf_document
+    # df_print: paged
 subtitle: Results of the simulation, validation and discussion
 ---
 
@@ -26,7 +26,7 @@ We have chosen two datasets with these characteristics:
 
 #### Kaggle Web Traffic Time Series Forecasting Challenge
 
-The training dataset consists of approximately 145k time series. We’ve reduced the dataset to
+The training dataset consists of approximately 145k time series. We've reduced the dataset to
 a smaller version with 6 different articles. Each of these time series represent a number of daily
 views of a different Wikipedia article, starting from July, 1st, 2015 up until September 1st, 2017.
 For each time series, we are provided with the name of the article as well as the type of traffic that
@@ -58,7 +58,7 @@ An RNN using LSTM units can be trained in a controlled manner, on a set of train
 
 #### Prophet
 
-Prophet is open source software released by Facebook’s Core Data Science team. It is a
+Prophet is open source software released by Facebook's Core Data Science team. It is a
 procedure for forecasting time series data based on an additive model where non-linear trends are fit with
 yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong
 seasonal effects and several seasons of historical data. Moreover, Prophet is robust to missing data and shifts
@@ -74,7 +74,7 @@ At its core, the Prophet procedure is an additive regression model with four mai
 
 * A user-provided list of important holidays.
 
-The significant concept in Prophet is that we model seasonality more correctly and the outcome is a more precise prediction by doing a better job of fitting the trend element very flexibly. Prophet model fits using Stan, and it has its core procedure implemented in Stan’s probabilistic programming language. Stan conducts incredibly fast MAP optimization for parameters (< 1 second), and it provides the  choice to estimate parameter uncertainty using the Hamiltonian Monte Carlo algorithm,  it enables to reuse the appropriate process across various interface languages. 
+The significant concept in Prophet is that we model seasonality more correctly and the outcome is a more precise prediction by doing a better job of fitting the trend element very flexibly. Prophet model fits using Stan, and it has its core procedure implemented in Stan's probabilistic programming language. Stan conducts incredibly fast MAP optimization for parameters (< 1 second), and it provides the  choice to estimate parameter uncertainty using the Hamiltonian Monte Carlo algorithm,  it enables to reuse the appropriate process across various interface languages. 
  
 ### Explanation of choice for data sets and regressors
 
