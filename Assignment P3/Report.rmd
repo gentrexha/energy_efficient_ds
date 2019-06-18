@@ -101,11 +101,27 @@ the number of values of that feature (Missing value = sum(n-feature) / n-feature
 2. For nominal feature, the missing value is filled by the mode of that feature, i.e. by the
 most recursive nominal value of that feature.
 
+\newpage
+
 ## Experiments and results
 
-### First dataset
+### Pollution dataset
 
-### Second dataset
+#### Using LSTM
+
+#### Using Prophet
+
+### Web Traffic dataset
+
+#### Using LSTM
+
+#### Using Prophet
+
+In the above image we can see the predictions made by Prophet library of python to predict the missing gap values for the dataset Web Traffic. As we can see in the image it fills each gap independently of each other, where first it fills values from first gap than continues to the second and third. The Prophet library was quite good at predicting these gap missing values as seen in the picture.
+
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Prophet prediction for Web Traffic dataset"}
+knitr::include_graphics('images/merged_web_traffic-gaps.png')
+```
 
 ### Record (approximate) runtimes of the forecasting methods
 
