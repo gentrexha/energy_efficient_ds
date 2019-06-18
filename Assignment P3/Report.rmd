@@ -109,6 +109,8 @@ most recursive nominal value of that feature.
 
 #### Using LSTM
 
+Gap RMSE: 1.118
+
 #### Using Prophet
 
 ### Web Traffic dataset
@@ -120,5 +122,13 @@ most recursive nominal value of that feature.
 ### Record (approximate) runtimes of the forecasting methods
 
 ## Conclusion
+
+In this report we've taken two forecasting methods (LSTM and Prophet) and used them on two different datasets (Pollution and Web Traffic). To measure the performance of our methods we've used RMSE.
+
+Some of the datasets have needed to be preprocessed due to missing values. In order to get better performance measures we've applied other preprocessing steps (such as scaling, filling missing values, dropping missing values) in datasets.
+
+We spent most of our time coding and exploring all the options the two mentioned forecasting methods (libraries) offer in Python. The options and possibilities on what to do are limitless. We often found ourselves trying out new stuff and finding out that it didn't help our measurement scores as much as we initially thought.
+
+We've limited the report to just some of the charts, figures and tables we've created due to otherwise resulting in a very long report.
 
 ## Bibliography
