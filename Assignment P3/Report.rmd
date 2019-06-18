@@ -101,11 +101,21 @@ the number of values of that feature (Missing value = sum(n-feature) / n-feature
 2. For nominal feature, the missing value is filled by the mode of that feature, i.e. by the
 most recursive nominal value of that feature.
 
+\newpage
+
 ## Experiments and results
 
-### First dataset
+### Pollution dataset
 
-### Second dataset
+#### Using LSTM
+
+#### Using Prophet
+
+### Web Traffic dataset
+
+#### Using LSTM
+
+#### Using Prophet
 
 ### Record (approximate) runtimes of the forecasting methods
 
