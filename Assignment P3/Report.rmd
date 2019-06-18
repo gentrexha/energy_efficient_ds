@@ -1,0 +1,48 @@
+---
+title: "194.049 Energy-efficient Distributed Systems"
+subtitle: "Results of the simulation, validation and discussion"
+author: "Gent Rexha, Ilir Osmanaj & Princ Mullatahiri "
+date: "12.06.2019"
+output: 
+  pdf_document
+---
+
+\newpage 
+\tableofcontents
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Characteristics of data sets, classifiers, performance measures and pre-processing
+
+### Data sets 
+
+### Forecasting Methods
+
+#### LSTM
+
+#### Prophet
+
+### Explanation of choice for data sets and classifiers
+
+### Performance measures
+
+#### RMSE
+
+### Pre-processing 
+
+#### Handling of missing values
+
+## Experiments and results
+
+### First dataset
+
+### Second dataset
+
+### Record (approximate) runtimes of the forecasting methods
+
+## Conclusion
+
+## Bibliography
