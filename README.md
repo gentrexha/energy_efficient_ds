@@ -13,5 +13,5 @@ Each assignment has it's corresponding folder and all the relevant data should b
 - [x] Due March 20nd (23:59): Send an email with the subject: “EEDS Group Assignment” to ivan@ec.tuwien.ac.at (do not
 forget CC: ivona@ec.tuwien.ac.at) with three names building a group. 
 - [x] Due May 8th: Presentation: Preparation; Implementation plan
-- [ ] Due May 29th: Presentation: Simulation infrastructure and preliminary implementation
-- [ ] Due June 19th: Presentation: Results of the simulation, validation and discussion
+- [x] Due May 29th: Presentation: Simulation infrastructure and preliminary implementation
+- [x] Due June 19th: Presentation: Results of the simulation, validation and discussion
