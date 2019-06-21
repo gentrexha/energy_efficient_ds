@@ -18,8 +18,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Characteristics of data sets, classifiers, performance measures and pre-processing
 
-
-
 ### Data sets 
 
 We have chosen two datasets with these characteristics:
@@ -105,29 +103,59 @@ most recursive nominal value of that feature.
 
 ## Experiments and results
 
+### Experiment Setting
+
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Experiment workflow"}
+knitr::include_graphics('images/Infrastructure Simulation Flow Chart.png')
+```
+
 ### Pollution dataset
 
 #### Using LSTM
 
-Gap RMSE: 1.118
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using LSTM"}
+knitr::include_graphics('images/Web Traffic LSTM.png')
+```
 
 #### Using Prophet
+
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using Prophet"}
+knitr::include_graphics('images/Pollution Prophet.png')
+```
+
+#### Performance metris
+
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using Prophet"}
+knitr::include_graphics('images/Pollution - RMSE Comparison.png')
+```
 
 ### Web Traffic dataset
 
 #### Using LSTM
 
-Gap RMSE: 962.629
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Web Traffic Predictions using LSTM"}
+knitr::include_graphics('images/Web Traffic LSTM.png')
+```
 
 #### Using Prophet
 
 In the above image we can see the predictions made by Prophet library of python to predict the missing gap values for the dataset Web Traffic. As we can see in the image it fills each gap independently of each other, where first it fills values from first gap than continues to the second and third. The Prophet library was quite good at predicting these gap missing values as seen in the picture.
 
-```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Prophet prediction for Web Traffic dataset"}
-knitr::include_graphics('images/merged_web_traffic-gaps.png')
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Web Traffic Predictions using Prophet"}
+knitr::include_graphics('images/Web Traffic Prophet.png')
+```
+
+#### Performance metris
+
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using Prophet"}
+knitr::include_graphics('images/Web Traffic - RMSE Comparison.png')
 ```
 
 ### Record (approximate) runtimes of the forecasting methods
+
+```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Record (approximate) runtimes of the forecasting methods. LEFT: Prophet. RIGHT: LSTM"}
+knitr::include_graphics('images/time_consumption.png')
+```
 
 ## Conclusion
 
@@ -139,4 +167,7 @@ We spent most of our time coding and exploring all the options the two mentioned
 
 We've limited the report to just some of the charts, figures and tables we've created due to otherwise resulting in a very long report.
 
-## Bibliography
+## Project repository
+
+https://github.com/gentrexha/energy_efficient_ds
+
