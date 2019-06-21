@@ -133,13 +133,15 @@ knitr::include_graphics('images/Pollution - RMSE Comparison.png')
 
 #### Using LSTM
 
+In Fig 7 we can see the predictions made by LSTM, the predictions for the lower baundary were more accurate then predictions for the upper baundary. The predicitions for each gap were made independently of each other, where the red line represents our predictions and the green line the acctual values.
+
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Web Traffic Predictions using LSTM"}
 knitr::include_graphics('images/Web Traffic LSTM.png')
 ```
 
 #### Using Prophet
 
-In the above image we can see the predictions made by Prophet library of python to predict the missing gap values for the dataset Web Traffic. As we can see in the image it fills each gap independently of each other, where first it fills values from first gap than continues to the second and third. The Prophet library was quite good at predicting these gap missing values as seen in the picture.
+In Fig 8 we can see the predictions made by Prophet library of python to predict the missing gap values for the dataset Web Traffic. As we can see in the Fig 8 it also fills each gap independently of each other, where first it fills values from first gap than continues to the second and third. The Prophet library was quite good at predicting these gap missing values as seen in the picture.
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Web Traffic Predictions using Prophet"}
 knitr::include_graphics('images/Web Traffic Prophet.png')
@@ -147,11 +149,15 @@ knitr::include_graphics('images/Web Traffic Prophet.png')
 
 #### Performance metris
 
+In Fig 9 we can see the RMSE values for LSTM and Prophet for each gap, according to RMSE Prohphet performed a little bit better than LSTM, but not significantly. The results for RMSE results were worse for Web Traffic than for Pollution dataset because Web Traffic can have Trends, for example trends like Chernobyl disaster searches in wikipedia after the release of HBO mini-series "Chernobyl" increased drasticly, and these trends effected our results.
+
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using Prophet"}
 knitr::include_graphics('images/Web Traffic - RMSE Comparison.png')
 ```
 
 ### Record (approximate) runtimes of the forecasting methods
+
+In Fig 10 we can see approximate runtimes for both datasets Web Traffic and Pollution for LSTM and Prophet. Fitting time took longer than Predicting values for all gaps. LSTM is dependent on how many epochs you train your neural network that is why it took longer to fit and predict. Pollution dataset took longer for fitting and predicting due to its large number of samples.
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Record (approximate) runtimes of the forecasting methods. LEFT: Prophet. RIGHT: LSTM"}
 knitr::include_graphics('images/time_consumption.png')
