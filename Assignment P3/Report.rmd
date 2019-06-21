@@ -14,6 +14,7 @@ subtitle: Results of the simulation, validation and discussion
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.pos = 'h')
 ```
 
 ## Characteristics of data sets, classifiers, performance measures and pre-processing
@@ -37,8 +38,7 @@ knitr::include_graphics('images/web_traffic.png')
 ```
 
 #### Air Pollution Forecasting
-This dataset contains daily values for pollution, dew, temperature, pressure, wind direction, wind
-speed, snow, and rain for the city of Bejing, China starting from January, 1st, 2010 up until December 31th, 2014.It has a large number of samples 43801, and small number of attributes 9. This dataset contains no missing values.
+This dataset contains daily values for pollution, dew, temperature, pressure, wind direction, wind speed, snow, and rain for the city of Bejing, China starting from January, 1st, 2010 up until December 31th, 2014.It has a large number of samples 43801, and small number of attributes 9. This dataset contains no missing values.
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Daily hits of different Wikipedia articles"}
 knitr::include_graphics('images/pollution.png')
@@ -50,17 +50,13 @@ knitr::include_graphics('images/pollution.png')
 
 Long short-term memory (LSTM) is an artificial recurrent neural network architecture used in the field of deep learning. It can process complete information sequences like speech or video not only single information points like pictures. A normal LSTM unit consists of a cell, an input gate, an output gate and a forget gate. The cell recalls values over arbitrary times interval, and the three gates control data flows into and out of the cell.
 
-LSTM networks are well suited to classify, process and make projections based on time series information, as there may be lags of unknown length in a time series between significant occurrences. LSTMs have been created to cope with the explosive and disappearing gradient issues that can be experienced in traditional RNN training. LSTM has an edge over RNNs, concealed Markov models and other sequence learning techniques in many apps.
+LSTM networks are well suited to classify, process and make projections based on time series information, as there may be lags of unknown length in a time series between significant occurrences. LSTMs have been created to cope with the explosive and disappearing gradient issues that can be experienced in traditional recurrent neural network (RNN) training. LSTM has an edge over RNNs, concealed Markov models and other sequence learning techniques in many apps.
 
 An RNN using LSTM units can be trained in a controlled manner, on a set of training sequences, using an optimization algorithm such as gradient descent, coupled with time backpropagation to calculate the gradients required during the optimization phase, to alter each weight of the LSTM network in proportion to the error derivative in relation to the respective weight. 
 
 #### Prophet
 
-Prophet is open source software released by Facebook's Core Data Science team. It is a
-procedure for forecasting time series data based on an additive model where non-linear trends are fit with
-yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong
-seasonal effects and several seasons of historical data. Moreover, Prophet is robust to missing data and shifts
-in the trend, and typically handles outliers well.
+Prophet is open source software released by Facebook's Core Data Science team. It is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Moreover, Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
 
 At its core, the Prophet procedure is an additive regression model with four main components:
 
@@ -90,20 +86,26 @@ $$RMSE = \sqrt{\frac{1}{n}\Sigma_{i=1}^{n}{\Big(\frac{d_i -f_i}{\sigma_i}\Big)^2
 
 #### Handling of missing values
 
-To handle the missing value we have used two approaches:
+To handle the missing value we've used multiple approaches:
 
-1. For numerical feature, the missing value is filled by the mean of that feature, i.e. we have
-filled the missing value with the sum of all values of the corresponding feature divided by
-the number of values of that feature (Missing value = sum(n-feature) / n-feature). If the attribute has more than 70% of missing values we do not consider its impact in the result.
+1. Manually specify column names
 
-2. For nominal feature, the missing value is filled by the mode of that feature, i.e. by the
-most recursive nominal value of that feature.
+2. Drop the first 24 hours because all of them have missing values
+
+3. Mark all NA values with 0, excluding nominal features where the missing value is filled by the mode of that feature, i.e. by the most recursive nominal value of that feature.
 
 \newpage
 
 ## Experiments and results
 
 ### Experiment Setting
+
+In Figure 3 we've defined a workflow on how experiments for this assignment will be executed. This definition helped us in developing the most efficient way to get this work done.
+
+Firstly the dataset is preproccessed, where we manually specify column names, drop the first 24 hours because all of them have missing values, mark all NA values with 0. After that three distinct random gaps are created in the dataset, which afterwards are analyzed visually to gain more insight into the problems.
+
+Now predictions are made possible by creating a supervised machine learning problem out of our data, based on that train, test and eval splits are created. Different horizon sizes are checked, and the best results are stored and evaluated, which then are displayed.
+
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Experiment workflow"}
 knitr::include_graphics('images/Infrastructure Simulation Flow Chart.png')
@@ -113,17 +115,27 @@ knitr::include_graphics('images/Infrastructure Simulation Flow Chart.png')
 
 #### Using LSTM
 
+In Figure 4 we've plotted three charts, which indicate the predictions of the three gaps created in the Pollution dataset. Here the LSTM with it's gradient descent algorithm shines, using backpropagation to create the best results possible.
+
+LSTM follows trends very nicely, although lacks accuracy in predicting higher values compared to lower ones where it doesn't underestimate said values.
+
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using LSTM"}
 knitr::include_graphics('images/Web Traffic LSTM.png')
 ```
 
 #### Using Prophet
 
+The Pollution dataset is where Prophet works best, because this dataset contains timeseries that have strong seasonal effects and several seasons of historical data.
+
+In Figure 5 we've plotted the predicted gaps by calling the Prophet.plot method and passing in our forecast dataframe. Where the predictions we've made are displayed. Here we can see the continuation of the daily trends in previous values from our predicted ones.
+
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using Prophet"}
 knitr::include_graphics('images/Pollution Prophet.png')
 ```
 
 #### Performance metris
+
+Both models forecasted with a high accuracy, which can be concluded from the RSME values in Figure 6. Here the LSTM performored better by a close margin. The higher RMSE in gap three is suspected to be from the extreme low temperature values which had to be predicted in that gap, which both models failed to do so correctly. Therefore failing on the lower boundary of that gap.
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using Prophet"}
 knitr::include_graphics('images/Pollution - RMSE Comparison.png')
@@ -133,7 +145,7 @@ knitr::include_graphics('images/Pollution - RMSE Comparison.png')
 
 #### Using LSTM
 
-In Fig 7 we can see the predictions made by LSTM, the predictions for the lower baundary were more accurate then predictions for the upper baundary. The predicitions for each gap were made independently of each other, where the red line represents our predictions and the green line the acctual values.
+In Figure 7 we can see the predictions made by LSTM, where the predictions for the lower boundary were more accurate then predictions for the upper boundary. The predicitions for each gap were generated independently of each other, where the red line represents our predictions and the green line the actual values.
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Web Traffic Predictions using LSTM"}
 knitr::include_graphics('images/Web Traffic LSTM.png')
@@ -141,7 +153,7 @@ knitr::include_graphics('images/Web Traffic LSTM.png')
 
 #### Using Prophet
 
-In Fig 8 we can see the predictions made by Prophet library of python to predict the missing gap values for the dataset Web Traffic. As we can see in the Fig 8 it also fills each gap independently of each other, where first it fills values from first gap than continues to the second and third. The Prophet library was quite good at predicting these gap missing values as seen in the picture.
+In Figure 8 we can see the predictions made by Prophet to predict the missing gap values for the Web Traffic dataset. As seen in Figure 8, it also fills each gap independently of each other, where it first fills values from first gap than continues to the second and third one. Prophet was quite good at predicting these missing gap values as displayed on the plots.
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Web Traffic Predictions using Prophet"}
 knitr::include_graphics('images/Web Traffic Prophet.png')
@@ -149,7 +161,7 @@ knitr::include_graphics('images/Web Traffic Prophet.png')
 
 #### Performance metris
 
-In Fig 9 we can see the RMSE values for LSTM and Prophet for each gap, according to RMSE Prohphet performed a little bit better than LSTM, but not significantly. The results for RMSE results were worse for Web Traffic than for Pollution dataset because Web Traffic can have Trends, for example trends like Chernobyl disaster searches in wikipedia after the release of HBO mini-series "Chernobyl" increased drasticly, and these trends effected our results.
+In Figure 9 we can see the RMSE values for LSTM and Prophet for each gap. According to the RMSE, Prophet performed a little bit better than LSTM, but not significantly. The RMSE results were worse for Web Traffic than for Pollution dataset because the Web Traffic dataset contains higher values and also can have trends, like the Chernobyl Wikipedia Site example mentioned in the slides. Where daily hits on the Wikipedia page increased drasticly, after the release of the HBO mini-series "Chernobyl" increased drasticly, therefore effecting our results.
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Pollution Gap Predictions using Prophet"}
 knitr::include_graphics('images/Web Traffic - RMSE Comparison.png')
@@ -157,7 +169,7 @@ knitr::include_graphics('images/Web Traffic - RMSE Comparison.png')
 
 ### Record (approximate) runtimes of the forecasting methods
 
-In Fig 10 we can see approximate runtimes for both datasets Web Traffic and Pollution for LSTM and Prophet. Fitting time took longer than Predicting values for all gaps. LSTM is dependent on how many epochs you train your neural network that is why it took longer to fit and predict. Pollution dataset took longer for fitting and predicting due to its large number of samples.
+In Figure 10 we can see approximate runtimes for both datasets, Web Traffic and Pollution, for both forecasting methods LSTM and Prophet. Fitting the models always took longer than predicting values for all gaps. Also LSTM is dependent on how many epochs you train your neural network, therefore it took longer to train. It is worth mentioning that you can add more epochs to your model, which can result in an increase in performance as well. The Pollution dataset took longer for fitting and predicting due to its large number of samples.
 
 ```{r, out.width = "500px", echo = FALSE, fig.align = 'center', fig.cap = "\\label{fig:figs}Record (approximate) runtimes of the forecasting methods. LEFT: Prophet. RIGHT: LSTM"}
 knitr::include_graphics('images/time_consumption.png')
